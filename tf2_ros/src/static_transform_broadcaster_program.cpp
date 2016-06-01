@@ -57,15 +57,15 @@ int main(int argc, char ** argv)
     msg.header.stamp = ros::Time::now();
     msg.header.frame_id = argv[8];
     msg.child_frame_id = argv[9];
-  
 
 
-  broadcaster.sendTransform(msg);
-  ROS_INFO("Spinning until killed publishing %s to %s", msg.header.frame_id.c_str(), msg.child_frame_id.c_str());
-  ros::spin();
 
-  return 0;
-} 
+    broadcaster.sendTransform(msg);
+    ROS_INFO("Spinning until killed publishing %s to %s", msg.header.frame_id.c_str(), msg.child_frame_id.c_str());
+    ros::spin();
+
+    return 0;
+  }
   else if (argc == 9)
   {
     if (strcmp(argv[7], argv[8]) == 0)
@@ -73,7 +73,7 @@ int main(int argc, char ** argv)
       ROS_FATAL("target_frame and source frame are the same (%s, %s) this cannot work", argv[7], argv[8]);
       return 1;
     }
-    
+
     geometry_msgs::TransformStamped msg;
     msg.transform.translation.x = atof(argv[1]);
     msg.transform.translation.y = atof(argv[2]);
@@ -110,4 +110,3 @@ int main(int argc, char ** argv)
 
 
 };
-

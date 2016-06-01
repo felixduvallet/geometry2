@@ -103,28 +103,16 @@ int main(int argc, char ** argv)
       return -1;
     }
 
-    const double tx = (double) tf_data["transform"]["translation"]["x"];
-    const double ty = (double) tf_data["transform"]["translation"]["y"];
-    const double tz = (double) tf_data["transform"]["translation"]["z"];
-
-    const double rx = (double) tf_data["transform"]["rotation"]["x"];
-    const double ry = (double) tf_data["transform"]["rotation"]["y"];
-    const double rz = (double) tf_data["transform"]["rotation"]["z"];
-    const double rw = (double) tf_data["transform"]["rotation"]["z"];
-
-    const std::string child_frame_id = (std::string) tf_data["child_frame_id"];
-    const std::string frame_id = (std::string) tf_data["header"]["frame_id"];
-
-    msg.transform.translation.x = tx;
-    msg.transform.translation.y = ty;
-    msg.transform.translation.z = tz;
-    msg.transform.rotation.x = rx;
-    msg.transform.rotation.y = ry;
-    msg.transform.rotation.z = rz;
-    msg.transform.rotation.w = rw;
+    msg.transform.translation.x = (double) tf_data["transform"]["translation"]["x"];
+    msg.transform.translation.y = (double) tf_data["transform"]["translation"]["y"];
+    msg.transform.translation.z = (double) tf_data["transform"]["translation"]["z"];
+    msg.transform.rotation.x = (double) tf_data["transform"]["rotation"]["x"];
+    msg.transform.rotation.y = (double) tf_data["transform"]["rotation"]["y"];
+    msg.transform.rotation.z = (double) tf_data["transform"]["rotation"]["z"];
+    msg.transform.rotation.w = (double) tf_data["transform"]["rotation"]["w"];
     msg.header.stamp = ros::Time::now();
-    msg.header.frame_id = frame_id;
-    msg.child_frame_id = child_frame_id;
+    msg.header.frame_id = (std::string) tf_data["header"]["frame_id"];
+    msg.child_frame_id = (std::string) tf_data["child_frame_id"];
   }
   else
   {

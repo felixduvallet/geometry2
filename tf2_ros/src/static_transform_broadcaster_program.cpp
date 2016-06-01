@@ -40,7 +40,6 @@ int main(int argc, char ** argv)
 
   if(argc == 10)
   {
-    geometry_msgs::TransformStamped msg;
     msg.transform.translation.x = atof(argv[1]);
     msg.transform.translation.y = atof(argv[2]);
     msg.transform.translation.z = atof(argv[3]);
@@ -91,7 +90,8 @@ int main(int argc, char ** argv)
   }
 
   broadcaster.sendTransform(msg);
-  ROS_INFO("Spinning until killed publishing %s to %s", msg.header.frame_id.c_str(), msg.child_frame_id.c_str());
+  ROS_INFO("Spinning until killed publishing %s to %s",
+           msg.header.frame_id.c_str(), msg.child_frame_id.c_str());
   ros::spin();
   return 0;
 };

@@ -74,7 +74,7 @@ class TestStaticPublisher(unittest.TestCase):
         cmd = 'rosrun tf2_ros static_transform_publisher /test_tf2/tf_null'
         with self.assertRaises(subprocess.CalledProcessError) as cm:
             ret = subprocess.check_output(
-                cmd.split(' '), shell=True, stderr=subprocess.STDOUT)
+                cmd, shell=True, stderr=subprocess.STDOUT)
 
         self.assertEqual(255, cm.exception.returncode)
         self.assertIn('Could not read TF', cm.exception.output)

@@ -24,5 +24,10 @@
         name="test_static_pub_param_null"
         args="test_tf2/tf_null" />
 
-  <test test-name="test_static_publisher" pkg="test_tf2" type="test_static_publisher" args="--text" />
+  <test test-name="test_static_publisher" pkg="test_tf2"
+        type="test_static_publisher" args="--text" />
+
+  <test test-name="test_static_publisher_py"
+        pkg="test_tf2"
+        type="test_static_publisher.py"/>
 </launch>

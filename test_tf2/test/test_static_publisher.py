@@ -76,7 +76,7 @@ class TestStaticPublisher(unittest.TestCase):
             ret = subprocess.check_output(
                 cmd, shell=True, stderr=subprocess.STDOUT)
 
-        self.assertEqual(127, cm.exception.returncode)
+        self.assertEqual(255, cm.exception.returncode)
         self.assertIn('Could not read TF', cm.exception.output)
 
     def test_publisher_invalid_param(self):

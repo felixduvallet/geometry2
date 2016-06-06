@@ -73,8 +73,8 @@ class TestStaticPublisher(unittest.TestCase):
         # Here there is no paramater by that name.
         cmd = 'rosrun tf2_ros static_transform_publisher /test_tf2/tf_null'
         with self.assertRaises(subprocess.CalledProcessError) as cm:
-            ret = subprocess.check_output(
-                cmd, shell=True, stderr=subprocess.STDOUT)
+            ret = subprocess.check_output(cmd.split(' '),
+                                          stderr=subprocess.STDOUT)
 
         self.assertEqual(255, cm.exception.returncode)
         self.assertIn('Could not read TF', cm.exception.output)
@@ -83,8 +83,8 @@ class TestStaticPublisher(unittest.TestCase):
         # Here there is an invalid parameter stored in the parameter server.
         cmd = 'rosrun tf2_ros static_transform_publisher /test_tf2/tf_invalid'
         with self.assertRaises(subprocess.CalledProcessError) as cm:
-            ret = subprocess.check_output(
-                cmd.split(' '), stderr=subprocess.STDOUT)
+            ret = subprocess.check_output(cmd.split(' '),
+                                          stderr=subprocess.STDOUT)
 
         self.assertEqual(255, cm.exception.returncode)
         self.assertIn('Could not validate XmlRpcC', cm.exception.output)

@@ -63,8 +63,8 @@ class TestStaticPublisher(unittest.TestCase):
         # Start the publisher with no argument.
         cmd = 'rosrun tf2_ros static_transform_publisher'
         with self.assertRaises(subprocess.CalledProcessError) as cm:
-            ret = subprocess.check_output(cmd.split(' '),
-                                          stderr=subprocess.STDOUT)
+            ret = subprocess.check_output(
+                cmd.split(' '), stderr=subprocess.STDOUT)
         self.assertEqual(255, cm.exception.returncode)
         self.assertIn('not having the right number of arguments',
                       cm.exception.output)
